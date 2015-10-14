@@ -26,14 +26,14 @@ mongo.MongoClient.connect(uristring, function(err, database) {
 
 
 exports.newData = function(req,res, team) {
-    db.collection(team).insert(req.query, function(err, doc){
+    db.collection(team).update({_id:1}, {upsert: true, new: true}, req.query, function(err, doc){
         if(err) res.send(400, err);
         res.send(200, doc.ops[0]);
     });
 }
 
 exports.getData = function(req,res, team) {
-    db.collection(team).findOne({}, function(err, doc){
+    db.collection(team).findOne({_id:1}, function(err, doc){
         if(err) res.send(400, err);
         res.send(200, doc);
     });
