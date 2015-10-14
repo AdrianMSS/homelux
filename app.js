@@ -9,8 +9,7 @@ var express = require('express'),
     cors = require('cors');
 
 //REST APIS
-var  organizationImagine = require('./services/imagine'),
-    database = require('./services/database');
+var  database = require('./services/database');
 
 var app = express();
 app.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
