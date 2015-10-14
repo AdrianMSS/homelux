@@ -26,7 +26,7 @@ mongo.MongoClient.connect(uristring, function(err, database) {
 
 
 exports.newData = function(req,res, team) {
-    db.collection(team).update({_id:1}, {upsert: true, new: true}, req.query, function(err, doc){
+    db.collection(team).update({_id:1}, req.query, {upsert: true, new: true}, function(err, doc){
         if(err) res.send(400, err);
         res.send(200, doc.ops[0]);
     });
